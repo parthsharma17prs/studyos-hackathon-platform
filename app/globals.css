@@ -1,0 +1,281 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ══════════════════════════════════════════
+   StudyOS — Global Design System
+   Pure black + Inter bold + animated ribbons
+   ══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+/* ─── BASE RESET ─── */
+:root {
+  --bg-primary: #000000;
+  --bg-card: #0D0D0D;
+  --border-default: #222222;
+  --text-primary: #FFFFFF;
+  --text-muted: #888888;
+  --student-accent: #FF0000;
+  --faculty-accent: #FFD700;
+  --status-good: #00FF88;
+  --status-warn: #FFB800;
+  --status-bad: #FF3344;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── SCROLLBAR STYLING ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0A0A;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ─── ANIMATED RIBBONS ─── */
+.ribbon-student {
+  background: linear-gradient(90deg, #FF0000, #000000, #FF0000);
+  background-size: 200% 200%;
+  animation: ribbonMove 3s ease-in-out infinite;
+  height: 4px;
+  width: 100%;
+}
+
+.ribbon-faculty {
+  background: linear-gradient(90deg, #FFD700, #000000, #FFD700);
+  background-size: 200% 200%;
+  animation: ribbonMove 3s ease-in-out infinite;
+  height: 4px;
+  width: 100%;
+}
+
+.ribbon-landing {
+  background: linear-gradient(90deg, #FF0000, #000000, #FF0000, #000000, #FF0000);
+  background-size: 300% 200%;
+  animation: ribbonMove 4s ease-in-out infinite;
+  height: 3px;
+  width: 100%;
+}
+
+@keyframes ribbonMove {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ─── GLASS CARD ─── */
+.glass-card {
+  background: rgba(13, 13, 13, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+}
+
+.glass-card-hover:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* ─── GLOW EFFECTS ─── */
+.glow-red {
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.2), 0 0 60px rgba(255, 0, 0, 0.1);
+}
+
+.glow-gold {
+  box-shadow: 0 0 30px rgba(255, 215, 0, 0.2), 0 0 60px rgba(255, 215, 0, 0.1);
+}
+
+.glow-text-red {
+  text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+}
+
+.glow-text-gold {
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+/* ─── BUTTON SYSTEM ─── */
+.btn-primary-student {
+  @apply bg-student-accent text-white font-extrabold uppercase tracking-wider
+         px-8 py-4 rounded-lg border-2 border-student-accent
+         hover:bg-transparent hover:text-student-accent
+         transition-all duration-300 transform hover:scale-105;
+}
+
+.btn-primary-faculty {
+  @apply bg-faculty-accent text-black font-extrabold uppercase tracking-wider
+         px-8 py-4 rounded-lg border-2 border-faculty-accent
+         hover:bg-transparent hover:text-faculty-accent
+         transition-all duration-300 transform hover:scale-105;
+}
+
+.btn-outline {
+  @apply bg-transparent text-white font-bold uppercase tracking-wider
+         px-8 py-4 rounded-lg border-2 border-white
+         hover:bg-white hover:text-black
+         transition-all duration-300 transform hover:scale-105;
+}
+
+.btn-ghost {
+  @apply bg-transparent text-os-muted font-semibold
+         px-6 py-3 rounded-lg border border-os-border
+         hover:text-white hover:border-white
+         transition-all duration-300;
+}
+
+/* ─── ENTRANCE ANIMATIONS ─── */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── 3D TILT CARD ─── */
+.tilt-card {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.tilt-card:hover {
+  transform: rotateX(5deg) rotateY(5deg);
+  transition: transform 0.3s ease;
+}
+
+/* ─── CARD FLIP ─── */
+.flip-card {
+  perspective: 1000px;
+}
+.flip-card-inner {
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  backface-visibility: hidden;
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
+/* ─── GRADIENT TEXT ─── */
+.gradient-text-red {
+  background: linear-gradient(135deg, #FF0000, #FF4444, #FF0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #FFD700, #FFED4A, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── LOADING PULSE ─── */
+.loading-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar-link {
+  @apply flex items-center gap-3 px-4 py-3 rounded-xl text-os-muted font-semibold
+         transition-all duration-200 hover:text-white;
+}
+
+.sidebar-link.active {
+  @apply text-white bg-white/5;
+}
+
+.sidebar-link-student.active {
+  @apply text-student-accent bg-student-glow;
+}
+
+.sidebar-link-faculty.active {
+  @apply text-faculty-accent bg-faculty-glow;
+}
+
+/* ─── PROGRESS BAR ─── */
+.progress-bar {
+  @apply h-2 rounded-full bg-os-border overflow-hidden;
+}
+
+.progress-fill-red {
+  @apply h-full rounded-full bg-student-accent transition-all duration-500;
+}
+
+.progress-fill-gold {
+  @apply h-full rounded-full bg-faculty-accent transition-all duration-500;
+}
+
+.progress-fill-green {
+  @apply h-full rounded-full bg-status-good transition-all duration-500;
+}
+
+/* ─── TOOLTIP ─── */
+.tooltip {
+  @apply relative;
+}
+
+.tooltip::after {
+  content: attr(data-tip);
+  @apply absolute bottom-full left-1/2 -translate-x-1/2 mb-2
+         px-3 py-1.5 rounded-lg text-xs font-medium
+         bg-white text-black opacity-0 pointer-events-none
+         transition-opacity duration-200 whitespace-nowrap;
+}
+
+.tooltip:hover::after {
+  @apply opacity-100;
+}
+
+/* ─── CONFETTI ─── */
+@keyframes confettiFall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  top: -10px;
+  animation: confettiFall 3s ease-out forwards;
+}
