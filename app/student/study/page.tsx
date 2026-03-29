@@ -1,0 +1,430 @@
+'use client';
+
+import { useState, useCallback } from 'react';
+import {
+  LuUpload,
+  LuBrain,
+  LuFileText,
+  LuBookOpen,
+  LuTrendingUp,
+  LuDownload,
+  LuChevronLeft,
+  LuChevronRight,
+  LuZap,
+  LuCircleHelp,
+  LuCircleCheck
+} from 'react-icons/lu';
+import Flashcards from '@/components/student/Flashcards';
+
+/**
+ * Study Notes + Quiz Generator — Core feature
+ * Premium design with Sample Quiz and Flashcards integration
+ */
+
+// ─── TYPES ───
+interface QuizQuestion {
+  question: string;
+  options: string[];
+  correct: number;
+  explanation: string;
+  topic: string;
+}
+
+interface KeyTerm {
+  term: string;
+  definition: string;
+}
+
+interface StudyData {
+  summary: string[];
+  quiz: QuizQuestion[];
+  keyTerms: KeyTerm[];
+  studyStrategy: string;
+  confabulationFlags: number[];
+}
+
+type Difficulty = 'easy' | 'medium' | 'hard';
+type Language = 'English' | 'Hindi' | 'Hinglish';
+type ViewMode = 'input' | 'results';
+type ResultTab = 'summary' | 'quiz' | 'terms' | 'results';
+
+const sampleStudyData: StudyData = {
+  summary: [
+    "Artificial Intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn.",
+    "Machine Learning is a subset of AI that focuses on the use of data and algorithms to imitate the way humans learn.",
+    "Deep Learning, a subfield of machine learning, is based on artificial neural networks with multiple layers.",
+    "Natural Language Processing (NLP) enables computers to understand, interpret, and generate human language.",
+    "Computer Vision allows machines to identify and process images in the same way that human vision does."
+  ],
+  quiz: [
+    {
+      question: "What is the primary goal of Machine Learning?",
+      options: ["To create machines that can perform physical tasks", "To enable machines to learn from data without explicit programming", "To replicate human consciousness", "To build faster computers"],
+      correct: 1,
+      explanation: "Machine learning focuses on teaching computers to learn from data and improve their performance over time without being specifically programmed for setiap task.",
+      topic: "Machine Learning Basics"
+    },
+    {
+      question: "Which field of AI deals with the interaction between computers and human language?",
+      options: ["Computer Vision", "Robotics", "Natural Language Processing (NLP)", "Expert Systems"],
+      correct: 2,
+      explanation: "NLP is the branch of AI that gives computers the ability to understand and respond to text or voice data.",
+      topic: "NLP"
+    },
+    {
+      question: "What are Neural Networks inspired by?",
+      options: ["Computer hardware architecture", "Biological brains", "Mathematical equations", "Social networks"],
+      correct: 1,
+      explanation: "Artificial neural networks are computing systems vaguely inspired by the biological neural networks that constitute animal brains.",
+      topic: "Deep Learning"
+    }
+  ],
+  keyTerms: [
+    { term: "Algorithm", definition: "A set of rules or steps followed by a computer to solve a problem or perform a task." },
+    { term: "Neural Network", definition: "A complex network of algorithms modeled after the human brain, used in deep learning." },
+    { term: "Supervised Learning", definition: "A type of machine learning where the model is trained on labeled data." },
+    { term: "Reinforcement Learning", definition: "Learning through trial and error, based on rewards and penalties." }
+  ],
+  studyStrategy: "Focus on understanding the hierarchy of AI -> Machine Learning -> Deep Learning. Spend more time on the practical applications of NLP and Computer Vision as they are trending topics.",
+  confabulationFlags: []
+};
+
+export default function StudyPage() {
+  const [viewMode, setViewMode] = useState<ViewMode>('input');
+  const [inputText, setInputText] = useState('');
+  const [difficulty, setDifficulty] = useState<Difficulty>('medium');
+  const [questionCount, setQuestionCount] = useState(10);
+  const [language, setLanguage] = useState<Language>('English');
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [studyData, setStudyData] = useState<StudyData | null>(null);
+  const [activeTab, setActiveTab] = useState<ResultTab>('summary');
+  const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
+  const [quizSubmitted, setQuizSubmitted] = useState(false);
+  const [score, setScore] = useState(0);
+  const [error, setError] = useState('');
+
+  const loadSample = () => {
+    setIsGenerating(true);
+    setTimeout(() => {
+      setStudyData(sampleStudyData);
+      setViewMode('results');
+      setActiveTab('summary');
+      setIsGenerating(false);
+    }, 1500);
+  };
+
+  const handleGenerate = async () => {
+    if (!inputText.trim()) {
+      setError('Please paste some text or upload a file.');
+      return;
+    }
+    setError('');
+    setIsGenerating(true);
+    // Simulation for demo
+    setTimeout(() => {
+      setStudyData(sampleStudyData);
+      setViewMode('results');
+      setActiveTab('summary');
+      setIsGenerating(false);
+    }, 2000);
+  };
+
+  const handleQuizSubmit = () => {
+    if (!studyData) return;
+    let correct = 0;
+    studyData.quiz.forEach((q, i) => {
+      if (selectedAnswers[i] === q.correct) correct++;
+    });
+    setScore(Math.round((correct / studyData.quiz.length) * 100));
+    setQuizSubmitted(true);
+    setActiveTab('results');
+  };
+
+  if (viewMode === 'input') {
+    return (
+      <div className="max-w-4xl mx-auto space-y-10">
+        <div className="flex items-end justify-between">
+          <div>
+            <h2 className="text-4xl font-black tracking-tighter mb-2">Generate Study Set</h2>
+            <p className="text-os-muted text-sm uppercase tracking-widest font-bold">Paste notes. Get AI magic.</p>
+          </div>
+          <button
+            onClick={loadSample}
+            className="btn-ghost flex items-center gap-2 border-student-accent text-student-accent bg-student-accent/5 hover:bg-student-accent/10 animate-pulse transition-all"
+          >
+            <LuZap size={16} /> Try Sample Data
+          </button>
+        </div>
+
+        {/* Text Input Area */}
+        <div className="relative group">
+          <textarea
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Paste your lecture notes, chapter text, or lecture content here..."
+            className="w-full h-80 bg-os-card border-2 border-os-border rounded-3xl p-8 text-white placeholder-os-muted/50 resize-none focus:border-student-accent/50 focus:outline-none transition-all text-base leading-relaxed group-hover:bg-white/[0.01]"
+          />
+          <div className="absolute bottom-6 right-6 text-[10px] font-black text-os-muted uppercase tracking-widest bg-black px-3 py-1 rounded-full border border-os-border">
+            {inputText.length} Characters
+          </div>
+        </div>
+
+        {/* File Upload */}
+        <div className="flex items-center gap-6">
+          <label className="btn-ghost cursor-pointer flex items-center gap-2 text-xs uppercase tracking-widest font-black">
+            <LuUpload size={16} className="text-student-accent" />
+            Upload PDF / Image
+            <input type="file" className="hidden" />
+          </label>
+          <span className="text-[10px] text-os-muted uppercase tracking-[0.2em] font-bold">OCR & Vision Powered</span>
+        </div>
+
+        <div className="ribbon-student" />
+
+        {/* Controls Row */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <label className="text-[10px] text-os-muted uppercase tracking-[0.2em] font-black block mb-4">Difficulty</label>
+            <div className="flex gap-2">
+              {['easy', 'medium', 'hard'].map(d => (
+                <button
+                  key={d}
+                  onClick={() => setDifficulty(d as Difficulty)}
+                  className={`flex-1 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${difficulty === d ? 'bg-student-accent border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted hover:border-os-muted'
+                    }`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <label className="text-[10px] text-os-muted uppercase tracking-[0.2em] font-black block mb-4">Question Count: {questionCount}</label>
+            <input
+              type="range"
+              min={3}
+              max={15}
+              value={questionCount}
+              onChange={(e) => setQuestionCount(parseInt(e.target.value))}
+              className="w-full h-1 bg-os-border rounded-lg appearance-none cursor-pointer accent-student-accent"
+            />
+          </div>
+
+          <div>
+            <label className="text-[10px] text-os-muted uppercase tracking-[0.2em] font-black block mb-4">Language</label>
+            <div className="flex gap-2">
+              {['English', 'Hindi', 'Hinglish'].map(l => (
+                <button
+                  key={l}
+                  onClick={() => setLanguage(l as Language)}
+                  className={`flex-1 py-3.5 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${language === l ? 'bg-student-accent border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted hover:border-os-muted'
+                    }`}
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Generate Button */}
+        <button
+          onClick={handleGenerate}
+          disabled={isGenerating || !inputText.trim()}
+          className={`
+            w-full py-6 rounded-2xl text-xl font-black uppercase tracking-[0.2em]
+            transition-all duration-500
+            ${isGenerating || !inputText.trim()
+              ? 'bg-os-border text-os-muted cursor-not-allowed opacity-50'
+              : 'btn-primary-student'
+            }
+          `}
+        >
+          {isGenerating ? 'Analyzing Knowledge...' : 'Generate Knowledge Set'}
+        </button>
+
+        {/* Premium Generating Overlay */}
+        {isGenerating && (
+          <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-xl flex flex-col items-center justify-center text-center p-10 animate-fade-in">
+            <div className="relative mb-8">
+              <div className="w-24 h-24 rounded-full border-4 border-student-accent/20 border-t-student-accent animate-spin" />
+              <LuBrain size={40} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-student-accent animate-pulse" />
+            </div>
+            <h3 className="text-3xl font-black tracking-tighter mb-4 animate-pulse">Analyzing Knowledge</h3>
+            <p className="text-os-muted text-sm max-w-xs uppercase tracking-widest leading-relaxed">
+              Feeding notes to the neural engine. <br />
+              Mapping concepts. <br />
+              Generating 3D flashcards.
+            </p>
+            <div className="w-64 h-1 bg-os-border rounded-full mt-12 overflow-hidden">
+              <div className="h-full bg-student-accent animate-ribbon-move" style={{ width: '60%' }} />
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  if (!studyData) return null;
+
+  return (
+    <div className="max-w-5xl mx-auto space-y-10">
+      {/* Header */}
+      <div className="flex items-center justify-between">
+        <button
+          onClick={() => setViewMode('input')}
+          className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-os-muted hover:text-white transition-all group"
+        >
+          <LuChevronLeft className="group-hover:-translate-x-1 transition-transform" /> New Study Session
+        </button>
+        <button className="btn-ghost flex items-center gap-2 border-student-accent/20 text-xs">
+          <LuDownload size={14} /> Download PDF
+        </button>
+      </div>
+
+      {/* Tabs */}
+      <div className="flex gap-2 bg-os-card p-1.5 rounded-2xl border border-os-border">
+        {[
+          { key: 'summary', label: 'Summary', icon: LuFileText },
+          { key: 'quiz', label: 'Quiz', icon: LuBrain },
+          { key: 'terms', label: 'Flashcards', icon: LuBookOpen },
+          { key: 'results', label: 'Analytics', icon: LuTrendingUp, disabled: !quizSubmitted },
+        ].map(tab => (
+          <button
+            key={tab.key}
+            onClick={() => !tab.disabled && setActiveTab(tab.key as ResultTab)}
+            disabled={tab.disabled}
+            className={`
+              flex-1 py-3.5 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all
+              flex items-center justify-center gap-3
+              ${activeTab === tab.key
+                ? 'bg-student-accent text-white shadow-[0_4px_20px_rgba(229,9,20,0.3)]'
+                : tab.disabled ? 'opacity-20 cursor-not-allowed' : 'text-os-muted hover:text-white hover:bg-white/5'
+              }
+            `}
+          >
+            <tab.icon size={16} />
+            <span className="hidden sm:inline">{tab.label}</span>
+          </button>
+        ))}
+      </div>
+
+      <div className="ribbon-student" />
+
+      {/* Content Rendering */}
+      {activeTab === 'summary' && (
+        <div className="grid grid-cols-1 gap-4 animate-fade-up">
+          <h3 className="text-3xl font-black tracking-tighter mb-4">Deep Summary</h3>
+          {studyData.summary.map((point, i) => (
+            <div
+              key={i}
+              className="glass-card p-8 flex gap-6 hover:bg-white/[0.01]"
+              style={{ animationDelay: `${i * 0.1}s` }}
+            >
+              <div className="w-10 h-10 rounded-xl bg-student-accent/10 border border-student-accent/20 flex items-center justify-center shrink-0">
+                <span className="text-student-accent font-black text-sm">{i + 1}</span>
+              </div>
+              <p className="text-sm font-medium leading-relaxed text-os-muted group-hover:text-white transition-colors">{point}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {activeTab === 'quiz' && (
+        <div className="space-y-8 animate-fade-up">
+          <div className="flex items-center justify-between">
+            <h3 className="text-3xl font-black tracking-tighter">AI Quiz</h3>
+            <span className="text-[10px] font-black uppercase tracking-widest text-os-muted px-4 py-2 border border-os-border rounded-full">
+              {Object.keys(selectedAnswers).length} / {studyData.quiz.length} Answered
+            </span>
+          </div>
+          <div className="space-y-8">
+            {studyData.quiz.map((q, qi) => (
+              <div key={qi} className="glass-card p-10 group">
+                <div className="flex items-start gap-4 mb-8">
+                  <LuCircleHelp size={24} className="text-student-accent shrink-0 mt-1" />
+                  <p className="text-xl font-black tracking-tight leading-tight">{q.question}</p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {q.options.map((opt, oi) => {
+                    const isSelected = selectedAnswers[qi] === oi;
+                    const isCorrect = quizSubmitted && oi === q.correct;
+                    const isWrong = quizSubmitted && isSelected && oi !== q.correct;
+
+                    return (
+                      <button
+                        key={oi}
+                        onClick={() => !quizSubmitted && setSelectedAnswers(prev => ({ ...prev, [qi]: oi }))}
+                        disabled={quizSubmitted}
+                        className={`
+                          p-6 rounded-2xl text-left text-sm font-bold transition-all border-2
+                          ${isCorrect ? 'bg-student-accent border-student-accent text-white shadow-[0_0_30px_rgba(229,9,20,0.3)]' :
+                            isWrong ? 'bg-os-border border-os-border text-os-muted opacity-50' :
+                              isSelected ? 'bg-student-accent/10 border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted hover:border-os-muted hover:text-white'}
+                        `}
+                      >
+                        <span className="inline-block w-8 font-black text-student-accent opacity-50">{String.fromCharCode(65 + oi)}.</span>
+                        {opt}
+                      </button>
+                    );
+                  })}
+                </div>
+                {quizSubmitted && (
+                  <div className="mt-8 p-6 bg-white/[0.02] rounded-2xl border border-os-border text-xs leading-relaxed text-os-muted">
+                    <span className="font-black text-white uppercase tracking-widest block mb-2">AI Explanation</span>
+                    {q.explanation}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          {!quizSubmitted && (
+            <button
+              onClick={handleQuizSubmit}
+              disabled={Object.keys(selectedAnswers).length < studyData.quiz.length}
+              className={`w-full py-6 rounded-2xl text-xl font-black uppercase tracking-[0.2em] transition-all
+                ${Object.keys(selectedAnswers).length === studyData.quiz.length ? 'btn-primary-student' : 'bg-os-border text-os-muted cursor-not-allowed'}
+              `}
+            >
+              Submit Knowledge Test
+            </button>
+          )}
+        </div>
+      )}
+
+      {activeTab === 'terms' && (
+        <div className="space-y-8 animate-fade-up">
+          <h3 className="text-3xl font-black tracking-tighter">Flashcards</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {studyData.keyTerms.map((term, i) => (
+              <Flashcards key={i} term={term.term} definition={term.definition} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {activeTab === 'results' && quizSubmitted && (
+        <div className="space-y-12 animate-fade-up text-center py-20">
+          <div className="relative inline-block">
+            <div className={`text-9xl font-black ${score >= 70 ? 'text-student-accent glow-text-red' : 'text-os-muted'}`}>
+              {score}%
+            </div>
+            <LuCircleCheck size={40} className="absolute -top-4 -right-4 text-student-accent animate-bounce" />
+          </div>
+          <div className="max-w-xl mx-auto space-y-6">
+            <h4 className="text-3xl font-black tracking-tight leading-tight">
+              {score >= 80 ? 'Mastery Achieved.' : 'Keep Grinding.'}
+            </h4>
+            <p className="text-os-muted text-lg leading-relaxed">
+              {studyData.studyStrategy}
+            </p>
+            <button onClick={() => setViewMode('input')} className="btn-primary-student !px-12">
+              Next Study Session
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

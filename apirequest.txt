@@ -1,0 +1,53 @@
+# StudyOS API Requirements & Integrations
+
+This document details the necessary APIs to run the complete StudyOS ecosystem (including the Saarthi-AI backend features like Embeddings, RAG, and Interview Sessions).
+
+## 1. LLM (Large Language Model) API
+Used for: Generating study notes, MCQs, evaluating interview answers, and extracting scorecard data.
+
+**Free Options:**
+- **Groq API**: Offers blazing fast Llama 3 models with a generous free tier. Highly recommended for the Hackathon.
+- **Google Gemini API**: Free tier available (up to 15 RPM for Gemini 1.5 Flash). Currently used in our wrappers.
+
+**Paid/Production Options:**
+- **OpenAI API**: GPT-4o for maximum accuracy and reasoning logic.
+- **Anthropic Claude**: Claude 3.5 Sonnet for excellent long-context RAG analysis.
+
+---
+
+## 2. Vector Database / Embeddings API
+Used for: RAG (Retrieval-Augmented Generation), comparing syllabi vs notes, and storing generated question contexts.
+
+**Free Options:**
+- **Pinecone**: Offers 1 free serverless index, perfect for Hackathon RAG pipelines.
+- **HuggingFace Inference (Sentence Transformers)**: Free unlimited embeddings if run locally or via free tier API.
+
+**Paid/Production Options:**
+- **Qdrant Cloud**: Scalable paid clusters.
+- **Pinecone Standard**: For production-level SLA and storage.
+
+---
+
+## 3. Voice / Avatar APIs
+Used for: Outbound AI voice calling for nudges, interview prep emulation.
+
+**Free Options:**
+- **Vapi.ai**: Gives $10 free credit on sign-up (enough for hundreds of demo calls).
+- **Web Speech API**: Browser-native, 100% free but varying quality across devices.
+
+**Paid/Production Options:**
+- **ElevenLabs**: Premium voice synthesis for ultimate realism.
+- **Tavus / HeyGen**: For video avatars (paid tiers).
+
+---
+
+## 4. Authentication & Database
+Used for: Login session management, Role Based Access (Student vs Faculty).
+
+**Free Options:**
+- **Supabase**: Open-source Firebase alternative with a massive free tier (Auth + Postgres).
+- **Firebase**: Generous free tier for Auth and Realtime Database (for Battle Mode).
+
+**Paid/Production Options:**
+- **Clerk / Auth0**: Premium B2B authentication suites.
+- **AWS RDS + Cognito**: Enterprise scale.
