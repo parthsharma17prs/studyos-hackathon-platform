@@ -476,6 +476,12 @@ export default function StudyPage() {
           </div>
         </div>
 
+        {error && (
+          <div className="p-4 mb-4 bg-red-500/10 border border-red-500/50 rounded-xl text-red-500 text-sm text-center animate-fade-in">
+            {error}
+          </div>
+        )}
+
         {/* Generate Button */}
         <button
           onClick={handleGenerate}

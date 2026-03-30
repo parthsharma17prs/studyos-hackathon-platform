@@ -1,0 +1,635 @@
+
+> studyos@1.0.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3001
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 2.5s
+ ○ Compiling /api/groq/summarize ...
+ ✓ Compiled /api/groq/summarize in 1037ms (139 modules)
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 1218ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 137ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 129ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 86ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 75ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 82ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 73ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 70ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 73ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 80ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 76ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 74ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 73ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 74ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 82ms
+Groq API Error: SyntaxError: Unexpected number in JSON at position 1
+    at JSON.parse (<anonymous>)
+    at parseJSONFromBytes (node:internal/deps/undici/undici:5595:19)
+    at successSteps (node:internal/deps/undici/undici:5566:27)
+    at fullyReadBody (node:internal/deps/undici/undici:1665:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async specConsumeBody (node:internal/deps/undici/undici:5575:7)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:14:29)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13)
+ POST /api/groq/summarize 500 in 80ms
+ ✓ Compiled in 298ms (101 modules)
+ ○ Compiling /student/study ...
+ ✓ Compiled /student/study in 7.9s (765 modules)
+ GET /student/study 200 in 8789ms
+ ✓ Compiled in 932ms (303 modules)
+ ✓ Compiled /api/groq/summarize in 382ms (484 modules)
+(node:93208) ExperimentalWarning: buffer.File is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:455:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:424:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:888:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:115:24)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+ POST /api/groq/summarize 500 in 4637ms
+API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:455:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:424:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:888:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:115:24)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+ POST /api/groq/summarize 500 in 2202ms
+API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:455:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:424:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:888:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:115:24)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+ POST /api/groq/summarize 500 in 1540ms
+ ✓ Compiled in 1430ms (787 modules)
+API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:455:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:424:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:888:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:115:24)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+ POST /api/groq/summarize 500 in 242ms
+API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:455:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:424:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:888:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:115:24)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+ POST /api/groq/summarize 500 in 175ms
+API Error: GoogleGenerativeAIFetchError: [GoogleGenerativeAI Error]: Error fetching from https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent: [404 Not Found] models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.
+    at handleResponseNotOk (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:455:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async makeRequest (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:424:9)
+    at async generateContent (webpack-internal:///(rsc)/./node_modules/@google/generative-ai/dist/index.mjs:888:22)
+    at async POST (webpack-internal:///(rsc)/./app/api/groq/summarize/route.ts:115:24)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:57228
+    at async eT.execute (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:46851)
+    at async eT.handle (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/compiled/next-server/app-route.runtime.dev.js:6:58760)
+    at async doRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1366:42)
+    at async cacheEntry.responseCache.get.routeKind (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1588:28)
+    at async DevServer.renderToResponseWithComponentsImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1496:28)
+    at async DevServer.renderPageComponent (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1924:24)
+    at async DevServer.renderToResponseImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:1962:32)
+    at async DevServer.pipeImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/next-server.js:272:17)
+    at async DevServer.handleRequestImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/base-server.js:818:17)
+    at async /Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:339:20
+    at async Span.traceAsyncFn (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/trace/trace.js:154:20)
+    at async DevServer.handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/dev/next-dev-server.js:336:24)
+    at async invokeRender (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:179:21)
+    at async handleRequest (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:359:24)
+    at async requestHandlerImpl (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/router-server.js:383:13)
+    at async Server.requestListener (/Users/macbook/Desktop/Projects/anti aurobindo1/studyos-hackathon-platform/node_modules/next/dist/server/lib/start-server.js:141:13) {
+  status: 404,
+  statusText: 'Not Found',
+  errorDetails: undefined
+}
+ POST /api/groq/summarize 500 in 199ms
+ ✓ Compiled in 1430ms (787 modules)
+ ✓ Compiled in 1362ms (756 modules)
+ ✓ Compiled in 430ms (303 modules)
+ ✓ Compiled in 481ms (303 modules)
+ ✓ Compiled /api/groq/summarize in 483ms (484 modules)
+ POST /api/groq/summarize 200 in 10053ms
+ ✓ Compiled in 2.2s (756 modules)

@@ -37,7 +37,7 @@ export async function POST(req: Request) {
         * Use specialized "ELI5" and "real_world_use" for complexity.`;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-1.5-flash",
+      model: "gemini-2.5-flash-lite",
       generationConfig: {
         responseMimeType: "application/json",
       }
