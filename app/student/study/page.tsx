@@ -265,7 +265,7 @@ export default function StudyPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          notes: inputText || (summaryData.summary ? summaryData.summary.join(' ') : ''),
+          notes: inputText || (summaryData.summary && Array.isArray(summaryData.summary) ? summaryData.summary.map((s: any) => `${s.heading}: ${s.description}`).join(' ') : ''),
           difficulty: difficulty,
           questionCount: questionCount
         }),
@@ -624,7 +624,16 @@ export default function StudyPage() {
                
                {activeFormat === 'image' && (
                  <div>
-                   <p className="text-sm text-os-muted mb-4">Mind Map Root Prompt:</p>
+                   <p className="text-sm text-os-muted mb-4">Generated Mind Map Image:</p>
+                   {transformedContent.mind_map_prompt && (
+                     <div className="w-full flex justify-center mb-6">
+                       <img 
+                         src={`https://image.pollinations.ai/prompt/${encodeURIComponent(transformedContent.mind_map_prompt)}?width=800&height=400&nologo=true`} 
+                         alt="Mind Map" 
+                         className="rounded-xl border border-purple-500/30 max-w-full"
+                       />
+                     </div>
+                   )}
                    <code className="block p-4 bg-black/50 rounded-xl text-purple-400 mb-6 whitespace-pre-wrap">
                      {transformedContent.mind_map_prompt}
                    </code>
@@ -634,7 +643,16 @@ export default function StudyPage() {
                        <div key={i} className="p-4 border border-purple-500/20 bg-purple-500/5 rounded-xl">
                          <h5 className="font-bold text-white mb-2">{item.heading}</h5>
                          <p className="text-sm text-os-muted mb-2">{item.description}</p>
-                         <p className="text-xs text-purple-300"><strong>Visual Prompt:</strong> {item.visual_prompt}</p>
+                         <div className="flex gap-4 items-start mt-4">
+                           <div className="flex-1">
+                             <p className="text-xs text-purple-300"><strong>Visual Prompt:</strong> {item.visual_prompt}</p>
+                           </div>
+                           <img 
+                             src={`https://image.pollinations.ai/prompt/${encodeURIComponent(item.visual_prompt || item.heading)}?width=200&height=200&nologo=true`} 
+                             alt={item.heading}
+                             className="rounded-lg w-24 h-24 object-cover"
+                           />
+                         </div>
                        </div>
                      ))}
                    </div>

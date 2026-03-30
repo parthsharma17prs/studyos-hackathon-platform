@@ -21,15 +21,15 @@ export async function POST(req: Request) {
     let promptText = "";
 
     if (format === 'image') {
-      promptText = `You are a visual learning architect. Analyze the provided study summary and generate specific image generation prompts to help students visualize the concepts.
+      promptText = `You are a visual learning architect. Analyze the provided study summary and generate specific simple drawing prompts to help students visualize the concepts. Keep it very short and fast to generate.
       Return a JSON object:
       {
-        "mind_map_prompt": "A highly detailed, complex DALL-E/Midjourney prompt describing a central conceptual mind map connecting all the topics.",
-        "visual_prompts": [
-          { "heading": "Heading from summary", "prompt": "Image prompt for this specific node/concept" }
+        "mind_map_prompt": "A simple visualization prompt describing a concept map. (Max 30 words).",
+        "summary": [
+          { "heading": "Heading 1", "description": "Short desc", "visual_prompt": "Simple visual prompt" }
         ]
       }
-      Summary: ${JSON.stringify(summaryData)}`;
+      Summary: ${JSON.stringify(summaryData).substring(0, 1000)}`; // Trim for speed
     } else if (format === 'video') {
       promptText = `You are an educational video producer. Analyze the provided study summary and convert it into a video script.
       Return a JSON object:
