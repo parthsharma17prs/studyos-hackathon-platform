@@ -23,17 +23,17 @@ export async function POST(req: Request) {
       `;
     } 
     else if (action === 'generate_paper') {
-      const { pyqTemplate, ragNotes } = payload;
+      const { template, notes } = payload;
       promptText = `You are an expert Question Paper setter. Your task is to create a new Mock Practice Question Paper.
       
       RULE 1 (Template): You MUST strictly follow the format of the provided Sample PYQ (Previous Year Question Paper). Mimic its exact structure, sections, total marks, and types of questions (e.g., number of MCQs, short answers, long answers).
       RULE 2 (Context): The content/knowledge of the new questions MUST come ONLY from the provided RAG Context / Study Notes. Do not use external knowledge outside of the notes provided.
       
       Sample PYQ Template:
-      ${pyqTemplate}
+      ${template}
 
       RAG Context / Study Notes:
-      ${ragNotes}
+      ${notes}
 
       Generate ONLY the question paper (no answers).
       `;

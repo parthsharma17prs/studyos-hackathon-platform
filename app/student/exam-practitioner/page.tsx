@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { LuFileText, LuSparkles, LuBrain, LuLineChart, LuBookOpen, LuCheckCircle, LuUpload } from 'react-icons/lu';
+import { LuFileText, LuSparkles, LuBrain, LuChartLine, LuBookOpen, LuCircleCheck, LuUpload } from 'react-icons/lu';
 
 export default function ExamPractitionerPage() {
   const [activeTab, setActiveTab] = useState<'solver' | 'generator' | 'confidence'>('solver');
@@ -24,6 +24,14 @@ export default function ExamPractitionerPage() {
   const [preScore, setPreScore] = useState(0);
   const [postScore, setPostScore] = useState(0);
   const [confidenceData, setConfidenceData] = useState<{improvement: number, accuracy: number} | null>(null);
+
+  const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<string>>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const text = await file.text();
+      setter(text);
+    }
+  };
 
   const handleSolve = async () => {
     if (!questionPaperText) return;
@@ -111,20 +119,26 @@ export default function ExamPractitionerPage() {
           onClick={() => setActiveTab('confidence')}
           className={`pb-4 font-black tracking-widest uppercase transition-all ${activeTab === 'confidence' ? 'border-b-2 border-student-accent text-student-accent' : 'text-os-muted hover:text-white'}`}
         >
-          <span className="flex items-center gap-2"><LuLineChart size={18}/> Confidence Meter</span>
+          <span className="flex items-center gap-2"><LuChartLine size={18}/> Confidence Meter</span>
         </button>
       </div>
 
       {activeTab === 'solver' && (
         <div className="space-y-6">
           <div className="glass-card p-6 bg-gradient-to-br from-student-accent/5 to-transparent">
-            <h2 className="text-xl font-black tracking-tight mb-2 flex items-center gap-2">
-              <LuUpload className="text-student-accent"/> Upload Question Paper Text
-            </h2>
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-black tracking-tight flex items-center gap-2">
+                <LuUpload className="text-student-accent"/> Upload Question Paper (PYQ)
+              </h2>
+              <label className="cursor-pointer bg-black/40 border border-student-accent/30 hover:bg-student-accent/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setQuestionPaperText)} />
+                Choose File
+              </label>
+            </div>
             <textarea 
               value={questionPaperText}
               onChange={(e) => setQuestionPaperText(e.target.value)}
-              placeholder="Paste the contents of your Question Paper here..."
+              placeholder="Paste the contents of your Question Paper here or use 'Choose File' to upload..."
               className="w-full h-48 bg-black/40 border border-os-border focus:border-student-accent rounded-xl p-4 text-white outline-none mb-4 resize-none"
             />
             <button 
@@ -132,14 +146,14 @@ export default function ExamPractitionerPage() {
               disabled={solving}
               className="flex items-center justify-center gap-2 w-full md:w-auto px-8 py-4 bg-student-accent hover:bg-red-700 disabled:opacity-50 text-white rounded-xl font-black transition-all hover:scale-[1.02]"
             >
-              {solving ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : <><LuSparkles /> SOLVE PAPER</>}
+              {solving ? <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" /> : <><LuSparkles /> SOLVE PAPER SEQUENCE-WISE</>}
             </button>
           </div>
 
           {solverResult && (
             <div className="glass-card p-8 bg-black/60 border border-student-accent/20">
               <h3 className="text-xl font-black tracking-tight text-student-accent mb-6 flex items-center gap-2">
-                <LuCheckCircle /> AI Generated Solutions
+                <LuCircleCheck /> AI Sequence-Wise Solutions
               </h3>
               <div className="prose prose-invert max-w-none whitespace-pre-wrap font-medium">
                 {solverResult}
@@ -153,9 +167,15 @@ export default function ExamPractitionerPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
             <div className="glass-card p-6 bg-gradient-to-br from-blue-500/5 to-transparent">
-              <h2 className="text-xl font-black tracking-tight mb-2 flex items-center gap-2">
-                <LuFileText className="text-blue-500"/> Sample Paper Template
-              </h2>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-black tracking-tight flex items-center gap-2">
+                  <LuFileText className="text-blue-500"/> Sample PYQ Template
+                </h2>
+                <label className="cursor-pointer bg-black/40 border border-blue-500/30 hover:bg-blue-500/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                  <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setTemplateText)} />
+                  Choose File
+                </label>
+              </div>
               <textarea 
                 value={templateText}
                 onChange={(e) => setTemplateText(e.target.value)}
@@ -164,13 +184,19 @@ export default function ExamPractitionerPage() {
               />
             </div>
             <div className="glass-card p-6 bg-gradient-to-br from-purple-500/5 to-transparent">
-              <h2 className="text-xl font-black tracking-tight mb-2 flex items-center gap-2">
-                <LuBookOpen className="text-purple-500"/> Study Notes / JSON Data
-              </h2>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-black tracking-tight flex items-center gap-2">
+                  <LuBookOpen className="text-purple-500"/> RAG Context / Study Notes
+                </h2>
+                <label className="cursor-pointer bg-black/40 border border-purple-500/30 hover:bg-purple-500/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                  <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setNotesJsonText)} />
+                  Choose File
+                </label>
+              </div>
               <textarea 
                 value={notesJsonText}
                 onChange={(e) => setNotesJsonText(e.target.value)}
-                placeholder="Paste the conversation, JSON, or study materials here..."
+                placeholder="Paste the documentation, notes or extracted content to generate questions from..."
                 className="w-full h-32 bg-black/40 border border-os-border focus:border-purple-500 rounded-xl p-4 text-white outline-none resize-none"
               />
             </div>
@@ -185,7 +211,7 @@ export default function ExamPractitionerPage() {
 
           <div className="glass-card p-8 bg-black/60 border border-os-border min-h-[400px]">
             <h3 className="text-xl font-black tracking-tight mb-6 flex items-center gap-2">
-              <LuCheckCircle className="text-student-accent"/> Generated Mock Test
+              <LuCircleCheck className="text-student-accent"/> Generated Mock Paper
             </h3>
             {generatedPaper ? (
               <div className="prose prose-invert max-w-none whitespace-pre-wrap font-medium">
@@ -193,7 +219,7 @@ export default function ExamPractitionerPage() {
               </div>
             ) : (
               <div className="flex h-full items-center justify-center text-os-muted italic text-sm font-bold">
-                Output will appear here...
+                Generated question paper will appear here based on the RAG context...
               </div>
             )}
           </div>
@@ -235,7 +261,7 @@ export default function ExamPractitionerPage() {
             <div className="space-y-6">
                 <div className="glass-card p-6 bg-gradient-to-br from-green-500/5 to-transparent">
                     <h2 className="text-xl font-black tracking-tight mb-6 flex items-center gap-2">
-                        <LuLineChart className="text-green-500"/> Performance & Confidence Meter
+                        <LuChartLine className="text-green-500"/> Performance & Confidence Meter
                     </h2>
                     <div className="grid grid-cols-2 gap-4 mb-6">
                         <div className="space-y-2">
