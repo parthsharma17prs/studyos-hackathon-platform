@@ -60,7 +60,6 @@ interface StudyData {
 
 type Difficulty = 'easy' | 'medium' | 'hard';
 type Language = 'English' | 'Hindi' | 'Hinglish';
-type SummaryFormat = 'text' | 'video' | 'image' | 'ppt';
 type ViewMode = 'input' | 'results';
 type ResultTab = 'summary' | 'quiz' | 'terms' | 'results';
 
@@ -127,9 +126,9 @@ export default function StudyPage() {
   const [difficulty, setDifficulty] = useState<Difficulty>('medium');
   const [questionCount, setQuestionCount] = useState(10);
   const [language, setLanguage] = useState<Language>('English');
-  const [format, setFormat] = useState<SummaryFormat>('text');
   const [isGenerating, setIsGenerating] = useState(false);
   const [studyData, setStudyData] = useState<StudyData | null>(null);
+  const [activeFormat, setActiveFormat] = useState<'text' | 'image' | 'video' | 'ppt'>('text');
   const [activeTab, setActiveTab] = useState<ResultTab>('summary');
   const [selectedAnswers, setSelectedAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
@@ -155,6 +154,39 @@ export default function StudyPage() {
     if ('speechSynthesis' in window) {
       window.speechSynthesis.cancel();
       setIsSpeaking(false);
+    }
+  };
+
+  const [isTransforming, setIsTransforming] = useState(false);
+  const [transformedContent, setTransformedContent] = useState<any>(null);
+
+  const handleTransform = async (targetFormat: string) => {
+    if (!studyData) return;
+    setIsTransforming(true);
+    try {
+      const response = await fetch('/api/groq/transform', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          format: targetFormat,
+          summaryData: studyData,
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to transform');
+
+      const data = await response.json();
+      setTransformedContent(data);
+      setActiveFormat(targetFormat as any);
+      
+      // We will render it directly below the Deep Summary header
+    } catch (err: any) {
+      console.error(err);
+      setError('Transformation failed: ' + err.message);
+    } finally {
+      setIsTransforming(false);
     }
   };
 
@@ -216,7 +248,6 @@ export default function StudyPage() {
       formData.append('difficulty', difficulty);
       formData.append('language', language);
       formData.append('questionCount', String(questionCount));
-      formData.append('format', format);
 
       const summaryResponse = await fetch('/api/groq/summarize', {
         method: 'POST',
@@ -235,39 +266,42 @@ export default function StudyPage() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           notes: inputText || (summaryData.summary ? summaryData.summary.join(' ') : ''),
-          difficulty: difficulty
+          difficulty: difficulty,
+          questionCount: questionCount
         }),
       });
 
       const rawQuizData = await quizResponse.json();
+      if (rawQuizData.error) {
+        throw new Error("Quiz Error: " + rawQuizData.error);
+      }
       
       // Transform new quiz data to match existing UI structure
       const formattedQuiz = Array.isArray(rawQuizData) ? rawQuizData.map((q: any) => ({
-        question: q.question,
-        options: Object.values(q.options),
-        correct: ['A', 'B', 'C', 'D'].indexOf(q.correct_answer_key),
-        explanation: q.correct_answer_text,
+        question: q.question || "Unknown Question",
+        options: q.options ? Object.values(q.options) : ["A", "B", "C", "D"],
+        correct: ['A', 'B', 'C', 'D'].indexOf(q.correct_answer_key || 'A'),
+        explanation: q.correct_answer_text || "",
         topic: q.topic || 'General'
       })) : summaryData.quiz;
 
       const fullData = {
         ...summaryData,
-        quiz: formattedQuiz
+        quiz: formattedQuiz || []
       };
       
       // Save to Firebase
       try {
+        const sessionTitle = (inputText.trim() ? inputText.substring(0, 40) : (file ? file.name : "Untitled Session")) + (inputText.length > 40 ? "..." : "");
         const docRef = await addDoc(collection(db, 'studySessions'), {
-          title: inputText.substring(0, 30) + '...',
+          title: sessionTitle,
           data: fullData,
-          format: format,
           createdAt: serverTimestamp()
         });
         setPastSessions(prev => [{
             id: docRef.id, 
-            title: inputText.substring(0, 30) + '...',
+            title: sessionTitle,
             data: fullData,
-            format: format,
             createdAt: new Date()
         }, ...prev]);
       } catch (firebaseErr) {
@@ -279,11 +313,7 @@ export default function StudyPage() {
       setActiveTab('summary');
     } catch (err: any) {
       console.error('Generation Error:', err);
-      setError('AI service is temporarily unavailable. Loading sample data instead.');
-      // Fallback to sample for smoother UX
-      setStudyData(sampleStudyData);
-      setViewMode('results');
-      setActiveTab('summary');
+      setError(err.message || 'AI service is temporarily unavailable.');
     } finally {
       setIsGenerating(false);
     }
@@ -324,7 +354,7 @@ export default function StudyPage() {
                       {session.title || 'Untitled Session'}
                     </p>
                     <p className="text-[10px] text-os-muted uppercase mt-1 flex items-center gap-2">
-                       <span className="bg-student-accent/20 text-student-accent px-1.5 py-0.5 rounded-sm">{session.format || 'text'}</span>
+                       <span className="bg-student-accent/20 text-student-accent px-1.5 py-0.5 rounded-sm">Notes</span>
                     </p>
                   </button>
                   <button 
@@ -400,25 +430,7 @@ export default function StudyPage() {
         <div className="ribbon-student" />
 
         {/* Controls Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div>
-            <label className="text-[10px] text-os-muted uppercase tracking-[0.2em] font-black block mb-4">Format</label>
-            <div className="flex flex-col gap-2">
-              <button onClick={() => setFormat('text')} className={`flex items-center gap-2 py-3 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${format === 'text' ? 'bg-student-accent border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted'}`}>
-                <LuFileText size={14}/> Text
-              </button>
-              <button onClick={() => setFormat('video')} className={`flex items-center gap-2 py-3 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${format === 'video' ? 'bg-student-accent border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted'}`}>
-                <LuVideo size={14}/> Video
-              </button>
-              <button onClick={() => setFormat('image')} className={`flex items-center gap-2 py-3 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${format === 'image' ? 'bg-student-accent border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted'}`}>
-                <LuImage size={14}/> Image
-              </button>
-              <button onClick={() => setFormat('ppt')} className={`flex items-center gap-2 py-3 px-4 rounded-xl text-[10px] font-black uppercase tracking-widest border-2 transition-all ${format === 'ppt' ? 'bg-student-accent border-student-accent text-white' : 'bg-transparent border-os-border text-os-muted'}`}>
-                <LuPresentation size={14}/> PPT
-              </button>
-            </div>
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div>
             <label className="text-[10px] text-os-muted uppercase tracking-[0.2em] font-black block mb-4">Difficulty</label>
             <div className="flex flex-col gap-2">
@@ -563,6 +575,105 @@ export default function StudyPage() {
       {/* Content Rendering */}
       {activeTab === 'summary' && (
         <div className="grid grid-cols-1 gap-4 animate-fade-up">
+
+          {/* Transformation Controls */}
+          <div className="flex gap-4 mb-6">
+            <button
+              onClick={() => handleTransform('image')}
+              disabled={isTransforming}
+              className={`flex-1 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
+                ${activeFormat === 'image' && transformedContent ? 'bg-purple-500/20 border-purple-500 border text-purple-400' : 'bg-os-card border border-os-border text-os-muted hover:text-white'}
+              `}
+            >
+              📷 Generate Mind Map
+            </button>
+            <button
+              onClick={() => handleTransform('video')}
+              disabled={isTransforming}
+              className={`flex-1 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
+                ${activeFormat === 'video' && transformedContent ? 'bg-red-500/20 border-red-500 border text-red-400' : 'bg-os-card border border-os-border text-os-muted hover:text-white'}
+              `}
+            >
+              🎬 Generate Video Script
+            </button>
+            <button
+              onClick={() => handleTransform('ppt')}
+              disabled={isTransforming}
+              className={`flex-1 py-3 px-4 rounded-xl text-xs font-black uppercase tracking-widest transition-all
+                ${activeFormat === 'ppt' && transformedContent ? 'bg-orange-500/20 border-orange-500 border text-orange-400' : 'bg-os-card border border-os-border text-os-muted hover:text-white'}
+              `}
+            >
+              📊 Generate Presentation
+            </button>
+          </div>
+
+          {isTransforming && (
+            <div className="text-center py-10">
+              <span className="loading loading-spinner loading-lg text-student-accent"></span>
+              <p className="mt-4 text-sm font-bold text-os-muted uppercase tracking-widest animate-pulse">
+                Transforming Content...
+              </p>
+            </div>
+          )}
+
+          {transformedContent && !isTransforming && (
+             <div className="mb-10 bg-os-card border border-os-border p-6 rounded-2xl">
+               <h3 className="text-2xl font-black mb-4 text-student-accent capitalize">
+                 {activeFormat} Generation Result
+               </h3>
+               
+               {activeFormat === 'image' && (
+                 <div>
+                   <p className="text-sm text-os-muted mb-4">Mind Map Root Prompt:</p>
+                   <code className="block p-4 bg-black/50 rounded-xl text-purple-400 mb-6 whitespace-pre-wrap">
+                     {transformedContent.mind_map_prompt}
+                   </code>
+                   <h4 className="font-bold mb-2">Visual Branch Data:</h4>
+                   <div className="space-y-4">
+                     {transformedContent.summary?.map((item: any, i: number) => (
+                       <div key={i} className="p-4 border border-purple-500/20 bg-purple-500/5 rounded-xl">
+                         <h5 className="font-bold text-white mb-2">{item.heading}</h5>
+                         <p className="text-sm text-os-muted mb-2">{item.description}</p>
+                         <p className="text-xs text-purple-300"><strong>Visual Prompt:</strong> {item.visual_prompt}</p>
+                       </div>
+                     ))}
+                   </div>
+                 </div>
+               )}
+
+               {activeFormat === 'video' && (
+                 <div className="space-y-6">
+                   {transformedContent.summary?.map((item: any, i: number) => (
+                     <div key={i} className="p-4 border border-red-500/20 bg-red-500/5 rounded-xl flex gap-4">
+                       <div className="font-black text-red-400">{item.timestamp}</div>
+                       <div>
+                         <h5 className="font-bold text-white mb-2">{item.heading}</h5>
+                         <p className="text-sm text-white/80">{item.description}</p>
+                       </div>
+                     </div>
+                   ))}
+                 </div>
+               )}
+
+               {activeFormat === 'ppt' && (
+                 <div>
+                    <h4 className="font-bold text-orange-400 mb-4">Detailed Outline</h4>
+                    <div className="p-4 border border-orange-500/20 bg-orange-500/5 rounded-xl mb-6 whitespace-pre-wrap text-sm">
+                      {transformedContent.presentation_outline}
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {transformedContent.summary?.map((item: any, i: number) => (
+                        <div key={i} className="p-4 border border-orange-500/20 bg-orange-500/5 rounded-xl">
+                          <h5 className="font-bold text-white mb-2">Slide {i+1}: {item.heading}</h5>
+                          <p className="text-xs text-os-muted">{item.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                 </div>
+               )}
+             </div>
+          )}
+
           <h3 className="text-4xl font-black tracking-tighter mb-8 italic drop-shadow-2xl">
             Deep <span className="text-student-accent">Summary</span>
           </h3>

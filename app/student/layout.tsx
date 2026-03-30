@@ -16,7 +16,8 @@ import {
   LuCalendar,
   LuTrendingUp,
   LuSettings,
-  LuBell
+  LuBell,
+  LuPenTool
 } from 'react-icons/lu';
 
 /**
@@ -29,6 +30,7 @@ const studentNavItems: SidebarItem[] = [
   { icon: LuPhone, label: 'Agent Booker', href: '/student/agent-booker' },
   { icon: LuBookOpen, label: 'Study Notes + Quiz', href: '/student/study' },
   { icon: LuActivity, label: 'My Scorecard', href: '/student/scorecard' },
+  { icon: LuPenTool, label: 'Mock Test', href: '/student/mock-test' },
   { icon: LuFileSearch, label: 'ATS Resume', href: '/student/resume' },
   { icon: LuSearch, label: 'Learning Gaps', href: '/student/gaps' },
   { icon: LuSwords, label: 'Battle Mode', href: '/student/battle' },
