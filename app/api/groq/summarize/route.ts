@@ -12,6 +12,7 @@ export async function POST(req: Request) {
     const questionCount = formData.get('questionCount') as string || '5';
     const format = formData.get('format') as string || 'text';
     const file = formData.get('file') as File | null;
+    const academicScoring = formData.get('academicScoring') as string || null;
     
     if (!content.trim() && !file) {
       return NextResponse.json({ error: 'Content or file is required' }, { status: 400 });
@@ -90,6 +91,7 @@ export async function POST(req: Request) {
     3. DIFFICULTY: ${difficulty}.
     4. QUESTION COUNT: ${questionCount}.
     5. Be extremely thorough in the "description" for the selected format.
+    ${academicScoring ? `6. PERSONALIZE using this student's Academic Profile: ${academicScoring}. Tailor the summary, study strategies, and analogies to complement their strengths/weaknesses in Mathematics, Logic, and Coding.` : ''}
 
     CONTENT TO ANALYZE:
     ${content}`;

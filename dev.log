@@ -869,3 +869,19 @@ API Error: Error: Failed to parse AI response as JSON
  POST /api/groq/quiz 200 in 3336ms
  ✓ Compiled /api/groq/transform in 380ms (502 modules)
  POST /api/groq/transform 200 in 3346ms
+ ✓ Compiled in 3.9s (785 modules)
+ ✓ Compiled in 1561ms (785 modules)
+ ✓ Compiled in 1118ms (785 modules)
+ GET /student/study 200 in 697ms
+ ✓ Compiled /api/groq/transform in 265ms (498 modules)
+ POST /api/groq/transform 200 in 35968ms
+ ✓ Compiled in 1357ms (785 modules)
+ ○ Compiling /student/scorecard ...
+ ✓ Compiled /student/scorecard in 787ms (473 modules)
+ ○ Compiling /student/gaps ...
+ ✓ Compiled /student/gaps in 1539ms (799 modules)
+ ✓ Compiled in 850ms (321 modules)
+ ✓ Compiled in 616ms (321 modules)
+ ✓ Compiled in 537ms (321 modules)
+ ✓ Compiled in 1944ms (799 modules)
+ ✓ Compiled in 4.5s (829 modules)

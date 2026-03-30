@@ -283,6 +283,17 @@ export default function StudyPage() {
       formData.append('language', language);
       formData.append('questionCount', String(questionCount));
 
+      // Append Scorecard Academic Context if available
+      try {
+        const storedScorecard = localStorage.getItem('studyos_scorecard_data');
+        if (storedScorecard) {
+          const parsed = JSON.parse(storedScorecard);
+          if (parsed.academicScoring) {
+            formData.append('academicScoring', JSON.stringify(parsed.academicScoring));
+          }
+        }
+      } catch(e) { console.error(e); }
+
       const summaryResponse = await fetch('/api/groq/summarize', {
         method: 'POST',
         body: formData,
