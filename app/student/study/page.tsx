@@ -17,7 +17,9 @@ import {
   LuVideo,
   LuImage,
   LuPresentation,
-  LuTrash2
+  LuTrash2,
+  LuVolume2,
+  LuVolumeX
 } from 'react-icons/lu';
 import Flashcards from '@/components/student/Flashcards';
 import { db } from '@/lib/firebase';
@@ -137,6 +139,24 @@ export default function StudyPage() {
   // Past Sessions
   const [pastSessions, setPastSessions] = useState<any[]>([]);
   const [isLoadingSessions, setIsLoadingSessions] = useState(true);
+  const [isSpeaking, setIsSpeaking] = useState(false);
+
+  const speak = (text: string) => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.onstart = () => setIsSpeaking(true);
+      utterance.onend = () => setIsSpeaking(false);
+      window.speechSynthesis.speak(utterance);
+    }
+  };
+
+  const stopSpeaking = () => {
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      setIsSpeaking(false);
+    }
+  };
 
   useEffect(() => {
     const fetchSessions = async () => {
@@ -557,9 +577,31 @@ export default function StudyPage() {
                   <div className="w-12 h-12 rounded-2xl bg-student-accent/10 border border-student-accent/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-lg shadow-student-accent/5">
                     <span className="text-student-accent font-black text-lg">{i + 1}</span>
                   </div>
-                  <h4 className="text-xl font-black tracking-tight group-hover:text-student-accent transition-colors">
-                    {item.heading}
-                  </h4>
+                  <div>
+                    <h4 className="text-xl font-black tracking-tight group-hover:text-student-accent transition-colors">
+                      {item.heading}
+                    </h4>
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        isSpeaking ? stopSpeaking() : speak(`${item.heading}. ${item.description}`);
+                      }}
+                      className="mt-2 text-os-muted hover:text-student-accent flex items-center gap-2 transition-colors z-10 relative"
+                    >
+                      {isSpeaking ? (
+                        <>
+                          <LuVolumeX size={14} />
+                          <span className="text-[10px] font-black uppercase tracking-widest">Stop Dictation</span>
+                        </>
+                      ) : (
+                        <>
+                          <LuVolume2 size={14} />
+                          <span className="text-[10px] font-black uppercase tracking-widest">Start Dictation</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
                 <div className="w-8 h-8 rounded-full border border-os-border flex items-center justify-center group-hover:border-student-accent group-hover:bg-student-accent/10 transition-all">
                   <LuChevronRight size={18} className="text-os-muted group-hover:text-student-accent group-open:rotate-90 transition-transform" />
