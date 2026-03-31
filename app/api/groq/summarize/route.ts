@@ -38,7 +38,7 @@ export async function POST(req: Request) {
         * Use specialized "ELI5" and "real_world_use" for complexity.`;
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash-lite",
+      model: "gemini-2.5-flash",
       generationConfig: {
         responseMimeType: "application/json",
       }
@@ -114,16 +114,22 @@ export async function POST(req: Request) {
     
     let studyData;
     try {
-        // Robust JSON extraction
-        const jsonMatch = outputText.match(/\{[\s\S]*\}/);
-        const cleanJSON = jsonMatch ? jsonMatch[0] : outputText;
-        studyData = JSON.parse(cleanJSON);
+        const start = outputText.indexOf('{');
+        const end = outputText.lastIndexOf('}');
+        if (start !== -1 && end !== -1) {
+            const cleanJSON = outputText.substring(start, end + 1);
+            studyData = JSON.parse(cleanJSON);
+        } else {
+            studyData = JSON.parse(outputText.replace(/```json/gi, '').replace(/```/g, '').trim());
+        }
     } catch (e) {
-        console.error("JSON Parse Error, trying fallback:", e);
+        console.error("JSON Parse Error. Raw Output Text was:", outputText);
         try {
-          studyData = JSON.parse(outputText.replace(/```json/g, '').replace(/```/g, ''));
+            const superClean = outputText.replace(/[\u0000-\u001F]+/g,"");
+            studyData = JSON.parse(superClean);
         } catch (innerE) {
-          throw new Error("Failed to parse AI response as JSON");
+            console.error("Super Clean Parse failed:", innerE);
+            throw new Error("Failed to parse AI response as JSON. See terminal logs.");
         }
     }
     

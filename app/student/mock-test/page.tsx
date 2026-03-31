@@ -51,7 +51,7 @@ export default function MockTestPage() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          notes: JSON.stringify(selectedSession.data || selectedSession.topic || '').substring(0, 3000), 
+          notes: JSON.stringify(selectedSession.data || selectedSession.title || '').substring(0, 3000), 
           difficulty: 'medium',
           questionCount: 5
         })
@@ -99,7 +99,7 @@ export default function MockTestPage() {
     try {
       await addDoc(collection(db, 'mockTestResults'), {
         sessionId: selectedSession.id,
-        topic: selectedSession.topic || 'Unknown Topic',
+        topic: selectedSession.title || 'Unknown Topic',
         confidence,
         score: finalScore,
         total: questions.length,
@@ -153,7 +153,7 @@ export default function MockTestPage() {
                         onClick={() => setSelectedSession(session)}
                         className={`p-4 rounded-xl cursor-pointer transition-all border ${selectedSession?.id === session.id ? 'border-student-accent bg-student-accent/10' : 'border-os-border bg-black hover:border-os-muted'}`}
                       >
-                        <h3 className="font-bold">{session.topic || `Session ${i + 1}`}</h3>
+                        <h3 className="font-bold">{session.title || session.topic || `Session ${i + 1}`}</h3>
                       </div>
                     ))}
                   </div>

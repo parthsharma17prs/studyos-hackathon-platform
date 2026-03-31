@@ -1,13 +1,16 @@
 'use client';
 
-import { useState } from 'react';
-import { LuFileText, LuSparkles, LuBrain, LuChartLine, LuBookOpen, LuCircleCheck, LuUpload } from 'react-icons/lu';
+import { useState, useEffect } from 'react';
+import { LuFileText, LuSparkles, LuBrain, LuChartLine, LuBookOpen, LuCircleCheck, LuUpload, LuDownload } from 'react-icons/lu';
+import { collection, query, orderBy, getDocs } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
 
 export default function ExamPractitionerPage() {
   const [activeTab, setActiveTab] = useState<'solver' | 'generator' | 'confidence'>('solver');
   
   // Solver State
   const [questionPaperText, setQuestionPaperText] = useState('');
+  const [solverSummaryText, setSolverSummaryText] = useState('');
   const [solverResult, setSolverResult] = useState('');
   const [solving, setSolving] = useState(false);
 
@@ -16,6 +19,26 @@ export default function ExamPractitionerPage() {
   const [notesJsonText, setNotesJsonText] = useState('');
   const [generatedPaper, setGeneratedPaper] = useState('');
   const [generatingPaper, setGeneratingPaper] = useState(false);
+  
+  // Study Sessions
+  const [studySessions, setStudySessions] = useState<any[]>([]);
+
+  useEffect(() => {
+    const fetchStudySessions = async () => {
+      try {
+        const q = query(collection(db, 'studySessions'), orderBy('createdAt', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const sessions = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        setStudySessions(sessions);
+      } catch (err) {
+        console.error('Failed to fetch study sessions', err);
+      }
+    };
+    fetchStudySessions();
+  }, []);
 
   // Confidence State
   const [learningNotes, setLearningNotes] = useState('');
@@ -28,8 +51,14 @@ export default function ExamPractitionerPage() {
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>, setter: React.Dispatch<React.SetStateAction<string>>) => {
     const file = event.target.files?.[0];
     if (file) {
-      const text = await file.text();
-      setter(text);
+      if (file.type.startsWith('image/')) {
+        const reader = new FileReader();
+        reader.onload = (e) => setter(e.target?.result as string);
+        reader.readAsDataURL(file);
+      } else {
+        const text = await file.text();
+        setter(text);
+      }
     }
   };
 
@@ -40,7 +69,7 @@ export default function ExamPractitionerPage() {
       const res = await fetch('/api/groq/exam-practitioner', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action: 'solve', payload: { questionPaper: questionPaperText } })
+        body: JSON.stringify({ action: 'solve', payload: { questionPaper: questionPaperText, summaryNotes: solverSummaryText } })
       });
       const data = await res.json();
       setSolverResult(data.result || data.error);
@@ -131,16 +160,38 @@ export default function ExamPractitionerPage() {
                 <LuUpload className="text-student-accent"/> Upload Question Paper (PYQ)
               </h2>
               <label className="cursor-pointer bg-black/40 border border-student-accent/30 hover:bg-student-accent/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
-                <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setQuestionPaperText)} />
+                <input type="file" accept=".txt,.json,.doc,.docx,.pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => handleFileUpload(e, setQuestionPaperText)} />
                 Choose File
               </label>
             </div>
+            
+            {questionPaperText.startsWith('data:image/') ? (
+              <img src={questionPaperText} alt="Uploaded Paper" className="w-full h-48 object-contain bg-black/40 rounded-xl mb-4 p-2 border border-os-border" />
+            ) : (
+                <textarea 
+                  value={questionPaperText}
+                  onChange={(e) => setQuestionPaperText(e.target.value)}
+                  placeholder="Paste the contents of your Question Paper here or use 'Choose File' to upload Images, PDFs, Docs, or text..."
+                  className="w-full h-32 bg-black/40 border border-os-border focus:border-student-accent rounded-xl p-4 text-white outline-none mb-4 resize-none"
+                />
+            )}
+
+            <div className="flex justify-between items-center mb-4 mt-6">
+              <h2 className="text-lg font-black tracking-tight flex items-center gap-2 text-os-muted">
+                <LuBookOpen /> Context: Summary JSON (Optional)
+              </h2>
+              <label className="cursor-pointer bg-black/40 border border-os-border hover:border-student-accent/30 px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                <input type="file" accept=".json,.txt" className="hidden" onChange={(e) => handleFileUpload(e, setSolverSummaryText)} />
+                Choose Summary
+              </label>
+            </div>
             <textarea 
-              value={questionPaperText}
-              onChange={(e) => setQuestionPaperText(e.target.value)}
-              placeholder="Paste the contents of your Question Paper here or use 'Choose File' to upload..."
-              className="w-full h-48 bg-black/40 border border-os-border focus:border-student-accent rounded-xl p-4 text-white outline-none mb-4 resize-none"
+              value={solverSummaryText}
+              onChange={(e) => setSolverSummaryText(e.target.value)}
+              placeholder="Provide any JSON summary files to strictly constraint the AI's solutions..."
+              className="w-full h-24 bg-black/40 border border-os-border focus:border-student-accent rounded-xl p-4 text-white outline-none mb-6 resize-none"
             />
+
             <button 
               onClick={handleSolve}
               disabled={solving}
@@ -172,26 +223,50 @@ export default function ExamPractitionerPage() {
                   <LuFileText className="text-blue-500"/> Sample PYQ Template
                 </h2>
                 <label className="cursor-pointer bg-black/40 border border-blue-500/30 hover:bg-blue-500/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
-                  <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setTemplateText)} />
+                  <input type="file" accept=".txt,.json,.doc,.docx,.pdf,.jpg,.jpeg,.png" className="hidden" onChange={(e) => handleFileUpload(e, setTemplateText)} />
                   Choose File
                 </label>
               </div>
-              <textarea 
-                value={templateText}
-                onChange={(e) => setTemplateText(e.target.value)}
-                placeholder="E.g., Section A: 5 qs (2 marks)\nSection B: 3 qs (5 marks)..."
-                className="w-full h-32 bg-black/40 border border-os-border focus:border-blue-500 rounded-xl p-4 text-white outline-none resize-none"
-              />
+              {templateText.startsWith('data:image/') ? (
+                <img src={templateText} alt="Uploaded Template" className="w-full h-32 object-cover bg-black/40 rounded-xl mb-4 p-2 border border-os-border" />
+              ) : (
+                <textarea 
+                  value={templateText}
+                  onChange={(e) => setTemplateText(e.target.value)}
+                  placeholder="E.g., Section A: 5 qs (2 marks)\nSection B: 3 qs (5 marks)..."
+                  className="w-full h-32 bg-black/40 border border-os-border focus:border-blue-500 rounded-xl p-4 text-white outline-none resize-none"
+                />
+              )}
             </div>
             <div className="glass-card p-6 bg-gradient-to-br from-purple-500/5 to-transparent">
               <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-black tracking-tight flex items-center gap-2">
                   <LuBookOpen className="text-purple-500"/> RAG Context / Study Notes
                 </h2>
-                <label className="cursor-pointer bg-black/40 border border-purple-500/30 hover:bg-purple-500/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
-                  <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setNotesJsonText)} />
-                  Choose File
-                </label>
+                <div className="flex gap-2">
+                  <select 
+                    onChange={(e) => {
+                      const session = studySessions.find(s => s.id === e.target.value);
+                      if (session) {
+                        setNotesJsonText(JSON.stringify(session.messages || [], null, 2));
+                      } else {
+                        setNotesJsonText('');
+                      }
+                    }}
+                    className="bg-black/40 border border-purple-500/30 px-3 py-2 rounded-lg text-sm font-bold text-white outline-none"
+                  >
+                    <option value="">Select from Study Session...</option>
+                    {studySessions.map((session) => (
+                      <option key={session.id} value={session.id}>
+                        {session.title || 'Untitled Session'} - {new Date(session.createdAt?.toDate?.() || Date.now()).toLocaleDateString()}
+                      </option>
+                    ))}
+                  </select>
+                  <label className="cursor-pointer bg-black/40 border border-purple-500/30 hover:bg-purple-500/10 px-4 py-2 rounded-lg text-sm font-bold transition-all">
+                    <input type="file" accept=".txt,.json" className="hidden" onChange={(e) => handleFileUpload(e, setNotesJsonText)} />
+                    Choose File
+                  </label>
+                </div>
               </div>
               <textarea 
                 value={notesJsonText}
@@ -210,9 +285,35 @@ export default function ExamPractitionerPage() {
           </div>
 
           <div className="glass-card p-8 bg-black/60 border border-os-border min-h-[400px]">
-            <h3 className="text-xl font-black tracking-tight mb-6 flex items-center gap-2">
-              <LuCircleCheck className="text-student-accent"/> Generated Mock Paper
-            </h3>
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-xl font-black tracking-tight flex items-center gap-2">
+                <LuCircleCheck className="text-student-accent"/> Generated Mock Paper
+              </h3>
+              {generatedPaper && (
+                <div className="flex gap-3">
+                  <button 
+                    onClick={() => {
+                      const blob = new Blob([generatedPaper], { type: 'application/msword' });
+                      const link = document.createElement('a');
+                      link.href = URL.createObjectURL(blob);
+                      link.download = 'Mock_Paper.doc';
+                      link.click();
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-blue-500/20 hover:bg-blue-500/40 text-blue-300 rounded-lg text-sm font-bold transition-all border border-blue-500/30"
+                  >
+                    <LuDownload /> Word
+                  </button>
+                  <button 
+                    onClick={() => {
+                      window.print();
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-red-500/20 hover:bg-red-500/40 text-red-300 rounded-lg text-sm font-bold transition-all border border-red-500/30"
+                  >
+                    <LuDownload /> PDF
+                  </button>
+                </div>
+              )}
+            </div>
             {generatedPaper ? (
               <div className="prose prose-invert max-w-none whitespace-pre-wrap font-medium">
                 {generatedPaper}
@@ -265,7 +366,7 @@ export default function ExamPractitionerPage() {
                     </h2>
                     <div className="grid grid-cols-2 gap-4 mb-6">
                         <div className="space-y-2">
-                            <label className="text-xs font-black uppercase text-os-muted">Pre-Test Score (0-5)</label>
+                            <label className="text-xs font-black uppercase text-os-muted">Estimated Confidence Score (0-5)</label>
                             <input 
                                 type="number" 
                                 min="0" max="5" 
@@ -273,9 +374,10 @@ export default function ExamPractitionerPage() {
                                 onChange={(e) => setPreScore(Number(e.target.value))}
                                 className="w-full bg-black/40 border border-os-border focus:border-green-500 rounded-xl p-4 text-white outline-none"
                             />
+                            <p className="text-[10px] text-os-muted italic">Self-assess before test</p>
                         </div>
                         <div className="space-y-2">
-                            <label className="text-xs font-black uppercase text-os-muted">Post-Test Score (0-5)</label>
+                            <label className="text-xs font-black uppercase text-os-muted">Actual Score (0-5)</label>
                             <input 
                                 type="number" 
                                 min="0" max="5" 
@@ -283,6 +385,7 @@ export default function ExamPractitionerPage() {
                                 onChange={(e) => setPostScore(Number(e.target.value))}
                                 className="w-full bg-black/40 border border-os-border focus:border-green-500 rounded-xl p-4 text-white outline-none"
                             />
+                            <p className="text-[10px] text-os-muted italic">Score after evaluating test</p>
                         </div>
                     </div>
                     <button 
@@ -305,21 +408,19 @@ export default function ExamPractitionerPage() {
                         <div className="w-full h-px bg-os-border" />
 
                         <div>
-                            <h3 className={`text-3xl font-black ${confidenceData.improvement >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                            <h3 className={`text-3xl font-black ${confidenceData.improvement > 0 ? 'text-green-400' : confidenceData.improvement === 0 ? 'text-blue-400' : 'text-red-400'}`}>
                                 {confidenceData.improvement > 0 ? '+' : ''}{confidenceData.improvement.toFixed(1)}%
                             </h3>
-                            <p className="text-xs font-black text-os-muted uppercase tracking-widest mt-1">Confidence Improvement</p>
+                            <p className="text-xs font-black text-os-muted uppercase tracking-widest mt-1">Reality Gap (Actual vs Estimated)</p>
                         </div>
 
                         <div className="pt-4">
                             {confidenceData.improvement < 0 ? (
-                                <span className="inline-block px-4 py-2 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 font-black text-xs tracking-widest uppercase">⚠️ Requires Review</span>
+                                <span className="inline-block px-4 py-2 rounded-full bg-red-500/10 text-red-500 border border-red-500/20 font-black text-xs tracking-widest uppercase">⚠️ Overconfident</span>
                             ) : confidenceData.improvement === 0 ? (
-                                <span className="inline-block px-4 py-2 rounded-full bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 font-black text-xs tracking-widest uppercase">😐 No Change</span>
-                            ) : confidenceData.improvement > 40 ? (
-                                <span className="inline-block px-4 py-2 rounded-full bg-green-500/10 text-green-500 border border-green-500/20 font-black text-xs tracking-widest uppercase">🔥 High Confidence</span>
+                                <span className="inline-block px-4 py-2 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 font-black text-xs tracking-widest uppercase">🎯 Perfectly Confident</span>
                             ) : (
-                                <span className="inline-block px-4 py-2 rounded-full bg-blue-500/10 text-blue-500 border border-blue-500/20 font-black text-xs tracking-widest uppercase">📈 Steady Growth</span>
+                                <span className="inline-block px-4 py-2 rounded-full bg-green-500/10 text-green-500 border border-green-500/20 font-black text-xs tracking-widest uppercase">📈 Modest/Learned</span>
                             )}
                         </div>
                     </div>

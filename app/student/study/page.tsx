@@ -377,9 +377,9 @@ export default function StudyPage() {
 
   if (viewMode === 'input') {
     return (
-      <div className="max-w-7xl mx-auto flex gap-8">
+      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8">
         {/* Sidebar for Past Chats/Sessions */}
-        <div className="w-80 shrink-0 bg-os-card border border-os-border rounded-3xl p-6 hidden lg:flex flex-col">
+        <div className="w-80 shrink-0 bg-os-card border border-os-border rounded-3xl p-6 flex flex-col">
           <h3 className="text-sm font-black uppercase tracking-widest text-os-muted mb-6 flex items-center gap-2">
             <LuHistory /> Past Sessions
           </h3>

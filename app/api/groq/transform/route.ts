@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     }
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash-lite",
+      model: "gemini-2.5-flash",
       generationConfig: {
         responseMimeType: "application/json",
       }
@@ -58,11 +58,17 @@ export async function POST(req: Request) {
     
     let parsedData;
     try {
-        const jsonMatch = outputText.match(/\{[\s\S]*\}/);
-        const cleanJSON = jsonMatch ? jsonMatch[0] : outputText;
-        parsedData = JSON.parse(cleanJSON);
+        const start = outputText.indexOf('{');
+        const end = outputText.lastIndexOf('}');
+        if (start !== -1 && end !== -1) {
+            const cleanJSON = outputText.substring(start, end + 1);
+            parsedData = JSON.parse(cleanJSON);
+        } else {
+            parsedData = JSON.parse(outputText.replace(/```json/gi, '').replace(/```/g, '').trim());
+        }
     } catch {
-        parsedData = JSON.parse(outputText.replace(/```json/g, '').replace(/```/g, ''));
+        console.error("Transform Parse Error. Raw text:", outputText);
+        parsedData = JSON.parse(outputText.replace(/[\u0000-\u001F]+/g,""));
     }
     
     return NextResponse.json(parsedData);

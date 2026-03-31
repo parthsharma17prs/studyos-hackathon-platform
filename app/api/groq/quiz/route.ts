@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     const { notes, difficulty, questionCount = 5 } = await req.json();
 
     const model = genAI.getGenerativeModel({
-      model: "gemini-2.5-flash-lite",
+      model: "gemini-2.5-flash",
       generationConfig: {
         responseMimeType: "application/json",
       }
@@ -36,11 +36,17 @@ export async function POST(req: Request) {
     
     let quizData;
     try {
-        const jsonMatch = responseText.match(/\{[\s\S]*\}/);
-        const cleanJSON = jsonMatch ? jsonMatch[0] : responseText;
-        quizData = JSON.parse(cleanJSON);
+        const start = responseText.indexOf('{');
+        const end = responseText.lastIndexOf('}');
+        if (start !== -1 && end !== -1) {
+            const cleanJSON = responseText.substring(start, end + 1);
+            quizData = JSON.parse(cleanJSON);
+        } else {
+            quizData = JSON.parse(responseText.replace(/```json/gi, '').replace(/```/g, '').trim());
+        }
     } catch(e) {
-        quizData = JSON.parse(responseText.replace(/```json/g, '').replace(/```/g, ''));
+        console.error("Quiz Parse Error. Raw text:", responseText);
+        quizData = JSON.parse(responseText.replace(/[\u0000-\u001F]+/g,""));
     }
     
     // Standardize to array

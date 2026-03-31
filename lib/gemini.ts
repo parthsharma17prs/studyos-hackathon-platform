@@ -37,7 +37,7 @@ export async function callGemini({ prompt, temperature = 0.7, maxTokens = 8192 }
  * Call Gemini Vision (for image/PDF analysis) using SDK
  */
 export async function callGeminiVision(base64Data: string, mimeType: string, prompt: string): Promise<string> {
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash-lite' });
+  const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
   const result = await model.generateContent({
     contents: [{
       role: 'user',
